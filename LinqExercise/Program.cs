@@ -19,35 +19,124 @@ namespace LinqExercise
              * Push to your github when completed!
              * 
              */
+            var numbers = new List<int>
+            {1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
+            
             //Print the Sum and Average of numbers
+            
+            Console.WriteLine(numbers.Sum());
+
+
+            
+
+            Console.WriteLine(numbers.Average());
+
+
+
 
             //Order numbers in ascending order and decsending order. Print each to console.
+            IEnumerable<int> orderNums =
+               numbers.OrderByDescending(number => number);
+
+            foreach (var number in orderNums)
+            {
+                Console.WriteLine(number); //descending
+            }
+
+            IEnumerable<int> orderNums2 =
+               numbers.OrderBy(number => number);
+
+            foreach (var number in orderNums2)
+            {
+                Console.WriteLine(number); //ascending
+            }
+
 
             //Print to the console only the numbers greater than 6
+            IEnumerable<int> largerSix =
+                 numbers.OrderByDescending(number => number > 6).Take(3);
+
+            foreach (var number in largerSix)
+            {
+                Console.WriteLine(number);
+            }
+
+
 
             //Order numbers in any order (acsending or desc) but only print 4 of them **foreach loop only!**
+            IEnumerable<int> onlyFour =
+               numbers.OrderBy(number => number).Take(4);
+
+            foreach (var number in onlyFour)
+            {
+                Console.WriteLine(number);
+            }
 
             //Change the value at index 4 to your age, then print the numbers in decsending order
+            var newNumbers = new List<int>
+            {1, 2, 3, 4, 35, 6, 7, 8, 9, 0 }; //I know there's a better way of changing the [4].
+
+            IEnumerable<int> ageCount =
+                 newNumbers.OrderByDescending(number => number);
+
+            foreach (var number in ageCount)
+            {
+                Console.WriteLine(number);
+            }
+
+
+
 
             // List of employees ***Do not remove this***
             var employees = CreateEmployees();
 
+
+
             //Print all the employees' FullName properties to the console only if their FirstName starts with a C OR an S.
             //Order this in acesnding order by FirstName.
+
+
+            
+
+
+            var FirstNames = employees.Where(names =>
+                employees.Any(name => names.FirstName.StartsWith("S") || names.FirstName.StartsWith("C")));
+
+            foreach (var person in FirstNames)
+
+            {
+                Console.WriteLine(person.FullName);
+            }
 
             //Print all the employees' FullName and Age who are over the age 26 to the console.
             //Order this by Age first and then by FirstName in the same result.
 
+            var NameAge = employees.Where(ageName => employees.Any(ageNames => ageName.Age > 26));
+            foreach (var item in NameAge)
+            {
+                Console.WriteLine(item.Age + " " + item.FullName );
+            }
+            
+            
+           
+            
+
             //Print the Sum and then the Average of the employees' YearsOfExperience
             //if their YOE is less than or equal to 10 AND Age is greater than 35
 
-            //Add an employee to the end of the list without using employees.Add()
-
+            //Omitted- Need to study this one
             
-            Console.WriteLine();
 
-            Console.ReadLine();
+            //Add an employee to the end of the list without using employees.Add()
+            string[] employeeList = { "Matt Storey", "Corey McDonald", "Danny Torrence", "Becca Smith" };
+            //employeeList.Append("Drew Gaylor");
+
+             Console.WriteLine(string.Join(", ",employeeList.Append("Drew Gaylor")));
+            
+           
+            
+           
         }
 
         #region CreateEmployeesMethod
@@ -70,3 +159,8 @@ namespace LinqExercise
         #endregion
     }
 }
+            
+            
+            
+            
+            
